@@ -1,3 +1,4 @@
+
 class UsersController < ApplicationController
   before_action :require_not_logged_in!, only: [:create, :new]
   before_action :require_logged_in!, only: [:show]
