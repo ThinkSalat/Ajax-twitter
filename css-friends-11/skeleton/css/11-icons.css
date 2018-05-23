@@ -1,0 +1,83 @@
+/* PHASE 11: Icons */
+
+[class*="icon-"]{
+  background-image: url("../images/sprite.png");
+  background-size: 25px 250px;
+  display: inline-block;
+  width: 25px;
+
+  overflow: hidden;
+  padding-top: 25px;
+  height: 0px;
+}
+
+.icon-comment{
+  background-position: 0px 0px;
+}
+
+.icon-reblog{
+  background-position: 0px -100px;
+}
+
+.icon-favorite{
+  background-position: 0px -50px;
+}
+
+.icon-comment:hover{
+  background-position: 0px -25px;
+}
+
+.icon-reblog:hover{
+  background-position: 0px -125px;
+}
+
+.icon-favorite:hover{
+  background-position: 0px -75px;
+}
+
+
+
+[class*="icon-small-"] {
+  width: 20px;
+padding-top: 20px;
+vertical-align: bottom;
+}
+
+.icon-small-wall {
+  background-position: 0px -225px;
+}
+
+.icon-small-about {
+  background-position: 0px -175px;
+}
+
+.icon-small-friends {
+  background-position: 0px -150px;
+}
+
+.icon-small-photos {
+  background-position: 0px -200px;
+  
+}
+
+.icon-small-friend {
+  background-position: 0px -150px;
+  
+}
+
+/* Dimensions of total sprite sheet: 25px 250px
+Dimension of regular icons: 25px 25px
+Dimension of small icons: 20px 20px
+Coordinates of regular icons:
+Comment: 0px 0px
+Comment Hover: 0px -25px
+Favorite: 0px -50px
+Favorite Hover: 0px -75px
+Reblog: 0px -100px
+Reblog Hover: 0px -125px
+Coordinates of small icons:
+Friends: 0px -150px
+About: 0px -175px
+Photos: 0px -200px
+Wall: 0px -225px */
+
