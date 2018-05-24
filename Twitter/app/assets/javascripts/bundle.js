@@ -93,10 +93,20 @@ const APIUtil = {
       method: `DELETE`,
       dataType: "JSON"
     });
+  },
+
+  searchUsers: (queryVal,success) => {
+    return $.ajax({
+      url: `/users/search/`,
+      method: 'GET',
+      dataType: "JSON",
+      data: { query: queryVal }
+    });
   }
 };
 
 module.exports = APIUtil;
+
 
 /***/ }),
 
@@ -125,7 +135,7 @@ class FollowToggle{
     } else {
       this.el.prop('disabled',false);
     }
-    
+
   }
   switchState() {
     this.followState = !this.followState;
@@ -133,9 +143,9 @@ class FollowToggle{
   handleClick() {
     this.el.on('click', event => {
       event.preventDefault();
-      
+
       this.render(true);
-      
+
       if (this.followState)  {
         APIUtil.unfollowUser(this.userId)
         .then(this.switchState.bind(this))
@@ -145,12 +155,13 @@ class FollowToggle{
         .then(this.switchState.bind(this))
         .then(this.render.bind(this));
       }
-      
+
     });
   }
 }
 
 module.exports = FollowToggle;
+
 
 /***/ }),
 
@@ -162,6 +173,7 @@ module.exports = FollowToggle;
 /***/ (function(module, exports, __webpack_require__) {
 
 const FollowToggle = __webpack_require__(/*! ./follow_toggle.js */ "./frontend/follow_toggle.js");
+const UserSearch = __webpack_require__(/*! ./user_search.js */ "./frontend/user_search.js");
 $(() => {
 
   let $followButtons = $(".follow-toggle");
@@ -169,7 +181,49 @@ $(() => {
     let $el = $(el);
     let ft = new FollowToggle(el);
   });
+
+  let el = $(".user-search");
+  el.each((i,el)=>{
+    let $el = $(el);
+    let userSearch = new UserSearch(el);
+  });
+
 });
+
+
+/***/ }),
+
+/***/ "./frontend/user_search.js":
+/*!*********************************!*\
+  !*** ./frontend/user_search.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+const APIUtil = __webpack_require__(/*! ./api_util.js */ "./frontend/api_util.js");
+
+
+class UserSearch{
+  constructor(el){
+    this.el = $(el);
+    this.input = el.find("#input");
+    this.ul = el.find(".users");
+    this.handleInput();
+    console.log(this.input.val());
+  }
+
+  handleInput(){
+    this.input.on("input", event => {
+      console.log(event);
+      APIUtil.searchUsers(this.input.val())
+      .then(response => {
+        console.log(response);
+      });
+    });
+  }
+}
+
+module.exports = UserSearch;
 
 
 /***/ })

@@ -16,7 +16,7 @@ class FollowToggle{
     } else {
       this.el.prop('disabled',false);
     }
-    
+
   }
   switchState() {
     this.followState = !this.followState;
@@ -24,9 +24,9 @@ class FollowToggle{
   handleClick() {
     this.el.on('click', event => {
       event.preventDefault();
-      
+
       this.render(true);
-      
+
       if (this.followState)  {
         APIUtil.unfollowUser(this.userId)
         .then(this.switchState.bind(this))
@@ -36,7 +36,7 @@ class FollowToggle{
         .then(this.switchState.bind(this))
         .then(this.render.bind(this));
       }
-      
+
     });
   }
 }
